@@ -26,11 +26,19 @@ def create_user(name, passwd, truename, email, passwd2):
         
         cursor = connection.cursor()
         
+        # Verificar se o nome de usuário já existe
         cursor.execute("SELECT COUNT(*) FROM users WHERE name = %s", (name,))
         if cursor.fetchone()[0] > 0:
             cursor.close()
             connection.close()
             return False, "O nome de usuário já existe"
+
+        # Verificar se o endereço de e-mail já está em uso
+        cursor.execute("SELECT COUNT(*) FROM users WHERE email = %s", (email,))
+        if cursor.fetchone()[0] > 0:
+            cursor.close()
+            connection.close()
+            return False, "O endereço de e-mail já está em uso"
         
 
         cursor.callproc('adduser', (
