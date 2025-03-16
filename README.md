@@ -32,6 +32,6 @@ pip install -r requirements.txt
 - configure mysql access
 
 4. Run the bot:
-5. 
+
 python bot.py
 
