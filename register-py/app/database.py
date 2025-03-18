@@ -40,6 +40,9 @@ def create_user(name, passwd, truename, email, passwd2):
             connection.close()
             return False, "O endereço de e-mail já está em uso"
         
+        cursor.execute("SELECT MAX(ID) FROM users WHERE name = %s", (name,))
+        # user_id = cursor.fetchone()[0]
+        user_id = cursor.fetchone()[0] + 16 
 
         cursor.callproc('adduser', (
             name,           # name1
@@ -63,11 +66,7 @@ def create_user(name, passwd, truename, email, passwd2):
         
 
         connection.commit()
-        
-
-        cursor.execute("SELECT MAX(ID) FROM users WHERE name = %s", (name,))
-        # user_id = cursor.fetchone()[0]
-        user_id = cursor.fetchone()[0] + 16 
+         
         
         cursor.close()
         connection.close()
