@@ -17,7 +17,7 @@ command to pull the embed - !register
 
 1. Clone the repository:
 
-git clone https://github.com/ipavarotti/register-py.git
+git clone https : / / github.com/ipavarotti / register-py . git
 cd register-py
 
 2. Install dependencies:
